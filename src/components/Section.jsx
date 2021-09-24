@@ -1,22 +1,28 @@
 import React from 'react'
 import styled from 'styled-components';
-
-const Section = () => {
+import Fade from 'react-reveal/Fade'
+const Section = ({title, description, backgroundImg, leftBtnText,rightBtnText}) => { 
     return (
-        <Wrap>
+        <Wrap bgImg = {backgroundImg}>
+            <Fade bottom>
             <ItemText>
-                <h1>Model S</h1>
-                <p>Order online for touchless delivery</p>
+                <h1>{title}</h1>
+                <p>{description}</p>
             </ItemText>
+            </Fade>
             <Buttons>
+                <Fade bottom>
             <ButtonGroup>
                 <LeftButton>
-                    Custom Order
+                    {leftBtnText}
                 </LeftButton>
+                {rightBtnText && 
                 <RightButton>
-                    Existing Inventory
+                    {rightBtnText}
                 </RightButton>
+                }
             </ButtonGroup>
+                </Fade>
             <DownArrow src = "/images/down-arrow.svg"/>
             </Buttons>
         </Wrap>
@@ -30,12 +36,17 @@ height:100vh;
 background-size:cover;
 background-position:center;
 background-repeat:no-repeat;
-background-image:url('/images/model-s.jpg');
 display:flex;
 flex-direction:column;
 justify-content: space-between;
-align-items:center
-
+align-items:center;
+background-image:${props => `url("/images/${props.bgImg}")`};
+h1{
+    text-transform:capitalize;
+}
+p{
+    text-transform:capitalize;
+}
 `
 const ItemText = styled.div`
 padding-top:15vh;
